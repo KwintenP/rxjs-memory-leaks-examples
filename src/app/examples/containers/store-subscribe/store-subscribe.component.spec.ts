@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ObservableCreateComponent } from './observable-create.component';
+import { StoreSubscribeComponent } from './store-subscribe.component';
 
-describe('ObservableCreateComponent', () => {
-  let component: ObservableCreateComponent;
-  let fixture: ComponentFixture<ObservableCreateComponent>;
+describe('StoreSubscribeComponent', () => {
+  let component: StoreSubscribeComponent;
+  let fixture: ComponentFixture<StoreSubscribeComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ObservableCreateComponent ]
+      declarations: [ StoreSubscribeComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ObservableCreateComponent);
+    fixture = TestBed.createComponent(StoreSubscribeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

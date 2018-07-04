@@ -6,7 +6,6 @@ import { Observable } from 'rxjs';
     template: `
         {{interval$ | async}}
     `,
-    styleUrls: ['./observable-create.component.css']
 })
 export class ObservableCreateComponent implements OnInit {
     interval$;
