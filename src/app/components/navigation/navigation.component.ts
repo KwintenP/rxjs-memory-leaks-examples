@@ -18,7 +18,10 @@ import { map } from 'rxjs/operators';
                 <mat-nav-list>
                     <a mat-list-item [routerLink]="['examples', 'create']">Create</a>
                     <a mat-list-item [routerLink]="['examples', 'custom-operator']">Custom operator</a>
-                    <a mat-list-item href="#">Services and subjects</a>
+                    <a mat-list-item [routerLink]="['examples', 'services-and-subjects']">Services and subjects</a>
+                    <a mat-list-item [routerLink]="['examples', 'store-subscribe']">NGRX/store</a>
+                    <a mat-list-item [routerLink]="['examples', 'unbounded-share-replay']">Unbounded shareReplay</a>
+                    <a mat-list-item [routerLink]="['examples', 'no-mem-leaks']">No mem leaks</a>
                     <a mat-list-item href="#">Distinct over time</a>
                 </mat-nav-list>
             </mat-sidenav>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map, shareReplay, switchMap } from 'rxjs/operators';
 
 export interface Pokemon {
     id: string;
@@ -13,6 +13,20 @@ export interface Pokemon {
     providedIn: 'root'
 })
 export class PokemonService {
+    realTimeMock$ = new BehaviorSubject('');
+    realTimeFirstGeneration$ = this.realTimeMock$.pipe(
+        switchMap(_ => this.firstGeneration$),
+        shareReplay(1)
+    );
+    firstGeneration$ = this.http.get('api/v2/pokemon?limit=151')
+        .pipe(
+            map((res: { results: Pokemon[] }) => res.results),
+            map(pokemon => pokemon.reduce((acc, curr, index) => [...acc, {
+                ...curr,
+                id: curr.url.substring(curr.url.length - 2, curr.url.length - 1)
+            }], [])),
+            shareReplay(1)
+        );
 
     constructor(private http: HttpClient) {
     }
@@ -30,5 +44,14 @@ export class PokemonService {
 
     getPokemonById(id: string): Observable<Pokemon> {
         return this.http.get<Pokemon>(`api/v2/pokemon/${id}`);
+    }
+
+    getFirstGenerationOfPokemon(): Observable<Pokemon[]> {
+        return this.firstGeneration$;
+    }
+
+     getRealTimeFirstGenerationOfPokemon(): Observable<Pokemon[]> {
+        console.log(this.realTimeFirstGeneration$.operator);
+        return this.realTimeFirstGeneration$;
     }
 }
