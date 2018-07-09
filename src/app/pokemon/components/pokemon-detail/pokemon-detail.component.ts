@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Pokemon, PokemonService } from '../../services/pokemon.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { map, shareReplay, switchMap, take } from 'rxjs/operators';
+import { map, shareReplay, switchMap, take, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 @Component({

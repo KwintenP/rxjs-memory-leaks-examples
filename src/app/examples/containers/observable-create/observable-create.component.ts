@@ -4,11 +4,11 @@ import { Observable } from 'rxjs';
 @Component({
     selector: 'app-observable-create',
     template: `
-        {{interval$ | async}}
+        interval: {{interval}}
     `,
 })
 export class ObservableCreateComponent implements OnInit {
-    interval$;
+    interval;
     hugeArray = [];
 
     constructor() {
@@ -18,17 +18,13 @@ export class ObservableCreateComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.interval$ = Observable.create((observer) => {
+        Observable.create((observer) => {
             let counter = 0;
             observer.next(0);
-            const intervalId = setInterval(() => {
+            setInterval(() => {
                 observer.next(++counter);
             }, 1000);
-
-            // return () => {
-            //     clearInterval(intervalId);
-            // };
-        });
+        }).subscribe(interval => this.interval = interval);
     }
 
 }

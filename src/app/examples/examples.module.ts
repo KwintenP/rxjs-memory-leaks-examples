@@ -13,15 +13,22 @@ import { counterReducer } from './state/count.reducer';
 import { UnboundShareReplayComponent } from './containers/unbound-share-replay/unbound-share-replay.component';
 import { BitcoinService } from './services/bitcoin.service';
 import { NoMemLeaksComponent } from './containers/no-mem-leaks/no-mem-leaks.component';
+import { SubjectMemoryLeakOrNotComponent } from './containers/subject-memory-leak-or-not/subject-memory-leak-or-not.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatSharedModule } from '../mat-shared/mat-shared.module';
+import { FindRxBugsComponent } from './containers/find-rx-bugs/find-rx-bugs.component';
 
 @NgModule({
     imports: [
         CommonModule,
         RouterModule.forChild(exampleRoutes),
         HttpClientModule,
-        StoreModule.forRoot({ count: counterReducer })
+        StoreModule.forRoot({ count: counterReducer }),
+        MatSharedModule,
+        FormsModule,
+        ReactiveFormsModule
     ],
-    declarations: [ObservableCreateComponent, CustomOperatorComponent, ServicesAndSubjectsComponent, StoreSubscribeComponent, UnboundShareReplayComponent, NoMemLeaksComponent],
+    declarations: [ObservableCreateComponent, CustomOperatorComponent, ServicesAndSubjectsComponent, StoreSubscribeComponent, UnboundShareReplayComponent, NoMemLeaksComponent, SubjectMemoryLeakOrNotComponent, FindRxBugsComponent],
     providers: [PokemonService, BitcoinService]
 })
 export class ExamplesModule {

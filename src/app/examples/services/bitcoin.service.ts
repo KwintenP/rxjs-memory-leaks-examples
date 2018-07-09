@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, shareReplay, switchMap, tap } from 'rxjs/operators';
+import { exhaust, exhaustMap, map, shareReplay, switchMap } from 'rxjs/operators';
 import { interval } from 'rxjs';
-import { PokemonService } from './pokemon.service';
 
 @Injectable()
 export class BitcoinService {
@@ -16,7 +15,7 @@ export class BitcoinService {
         if (!this.bitcoin$) {
             this.bitcoin$ = interval(1000)
                 .pipe(
-                    switchMap(_ => this.httpClient.get<any>(`https://api.coindesk.com/v1/bpi/currentprice.json`)),
+                    exhaustMap(_ => this.httpClient.get<any>(`https://api.coindesk.com/v1/bpi/currentprice.json`)),
                     map(res => res.bpi.EUR.rate),
                     map(rate => {
                         const hugeArray = [];
@@ -25,6 +24,7 @@ export class BitcoinService {
                         }
                         return {rate, big: hugeArray};
                     }),
+                    map(({rate}) => rate),
                     shareReplay(),
                 );
         }

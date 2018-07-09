@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { map, shareReplay, switchMap } from 'rxjs/operators';
+import { debounceTime, map, shareReplay, switchMap } from 'rxjs/operators';
 
 export interface Pokemon {
     id: string;
@@ -25,6 +25,7 @@ export class PokemonService {
                 ...curr,
                 id: curr.url.substring(curr.url.length - 2, curr.url.length - 1)
             }], [])),
+            debounceTime(200),
             shareReplay(1)
         );
 
@@ -51,7 +52,6 @@ export class PokemonService {
     }
 
      getRealTimeFirstGenerationOfPokemon(): Observable<Pokemon[]> {
-        console.log(this.realTimeFirstGeneration$.operator);
         return this.realTimeFirstGeneration$;
     }
 }
