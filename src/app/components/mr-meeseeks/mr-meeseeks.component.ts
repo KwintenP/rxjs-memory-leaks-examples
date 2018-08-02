@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MrMeeseeks } from '../../../models/mr-meeseeks.entity';
+import { MrMeeseeks } from '../../models/mr-meeseeks.entity';
 
 @Component({
     selector: 'mr-meeseeks',

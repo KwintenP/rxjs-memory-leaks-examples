@@ -17,8 +17,8 @@ import { PokemonOverviewComponent } from './pokemon/components/pokemon-overview/
 import { HttpClientModule } from '@angular/common/http';
 import { routes } from './app.routes';
 import { RouterModule } from '@angular/router';
-import { HelpMeMrMeeseeksComponent } from './examples/containers/mr-meeseeks/help-me-mr-meeseeks.component';
-import { MrMeeseeksComponent } from './examples/components/mr-meeseeks/mr-meeseeks.component';
+import { HelpMeMrMeeseeksComponent } from './containers/help-me-mr-meeseeks/help-me-mr-meeseeks.component';
+import { MrMeeseeksComponent } from './components/mr-meeseeks/mr-meeseeks.component';
 
 @NgModule({
   declarations: [AppComponent, NavigationComponent, HelpMeMrMeeseeksComponent, MrMeeseeksComponent],
