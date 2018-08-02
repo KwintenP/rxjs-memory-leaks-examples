@@ -1,5 +1,5 @@
 export interface MrMeeseeks {
-    rotation: number;
-    y: number;
-    x: number;
+  rotation: number;
+  y: number;
+  x: number;
 }
