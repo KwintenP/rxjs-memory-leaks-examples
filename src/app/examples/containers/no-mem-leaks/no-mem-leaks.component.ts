@@ -4,13 +4,10 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-no-mem-leaks',
   template: `
       no memory leaks here!
-  `,
+  `
 })
 export class NoMemLeaksComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

@@ -4,8 +4,8 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Component({
-    selector: 'app-navigation',
-    template: `
+  selector: 'app-navigation',
+  template: `
         <mat-sidenav-container class="sidenav-container">
             <mat-sidenav
                     #drawer
@@ -16,6 +16,7 @@ import { map } from 'rxjs/operators';
                     [opened]="!(isHandset$ | async)">
                 <mat-toolbar color="primary">Menu</mat-toolbar>
                 <mat-nav-list>
+                    <a mat-list-item [routerLink]="['examples', 'mr-meeseeks']">Mr Meeseeks</a>
                     <a mat-list-item [routerLink]="['examples', 'create']">Create</a>
                     <!--<a mat-list-item [routerLink]="['examples', 'custom-operator']">Custom operator</a>-->
                     <a mat-list-item [routerLink]="['examples', 'services-and-subjects']">Services and subjects</a>
@@ -43,17 +44,12 @@ import { map } from 'rxjs/operators';
             </mat-sidenav-content>
         </mat-sidenav-container>
     `,
-    styleUrls: ['./navigation.component.css']
+  styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent {
+  isHandset$: Observable<boolean> = this.breakpointObserver
+    .observe(Breakpoints.Handset)
+    .pipe(map(result => result.matches));
 
-    isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
-        .pipe(
-            map(result => result.matches)
-        );
-
-    constructor(private breakpointObserver: BreakpointObserver) {
-    }
-
+  constructor(private breakpointObserver: BreakpointObserver) {}
 }
-

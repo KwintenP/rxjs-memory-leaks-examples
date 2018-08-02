@@ -9,19 +9,13 @@ import { MatSharedModule } from '../mat-shared/mat-shared.module';
 import { PokemonDetailComponent } from './components/pokemon-detail/pokemon-detail.component';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        HttpClientModule,
-        RouterModule.forChild(pokemonRoutes),
-        MatSharedModule,
-    ],
-    providers: [
-        PokemonService
-    ],
-    declarations: [
-        PokemonOverviewComponent,
-        PokemonDetailComponent
-    ]
+  imports: [
+    CommonModule,
+    HttpClientModule,
+    RouterModule.forChild(pokemonRoutes),
+    MatSharedModule
+  ],
+  providers: [PokemonService],
+  declarations: [PokemonOverviewComponent, PokemonDetailComponent]
 })
-export class PokemonModule {
-}
+export class PokemonModule {}

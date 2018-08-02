@@ -2,37 +2,50 @@ import { Component, OnInit } from '@angular/core';
 import { interval } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MrMeeseeks } from '../../../models/mr-meeseeks.entity';
 
 @Component({
-    selector: 'app-mr-meeseeks',
+    selector: 'help-me-mr-meeseeks-component',
     template: `
-        <button mat-raised-button (click)="releaseMrMeeseeks()">Release Mr Meeseeks!</button>
-        <img *ngFor="let mrMeeseeks of mrMeeseeksArray"
-             src="assets/img/mr_meeseeks.png"
-             [style.transform]="'rotate(' + mrMeeseeks.rotateDegree + 'deg)'">
-    `
+        <div class="buttons">
+            <button mat-button (click)="askMrMeeseeksForHelp()">
+                <img src="assets/img/mr_meeseeks_button.png" alt="mr meeseeks button">
+            </button>
+            <button mat-button (click)="releaseMrMeeseeks()">
+                <mat-icon>exit_to_app</mat-icon>
+            </button>
+        </div>
+        <mr-meeseeks *ngFor="let item of mrMeeseeks" [mrMeeseeks]="item"></mr-meeseeks>
+    `,
+    styleUrls: ['./help-me-mr-meeseeks.component.scss']
 })
-export class MrMeeseeksComponent implements OnInit {
-    hugeArray = [];
-    mrMeeseeksArray: Array<{ rotateDegree: number }> = [];
+export class HelpMeMrMeeseeksComponent {
+    mrMeeseeks: Array<MrMeeseeks> = [];
 
-    constructor(private router: Router,
-                private activatedRoute: ActivatedRoute) {
-        for (let i = 0; i < 250000; i++) {
-            this.hugeArray.push(Math.ceil(Math.random() * 100));
-        }
+    constructor(private router: Router, private activatedRoute: ActivatedRoute) {
     }
 
-    ngOnInit() {
+    askMrMeeseeksForHelp() {
         interval(1000)
-            .pipe(map(_ => Math.floor(Math.random() * Math.floor(360))))
-            .subscribe(degrees => {
-                console.log({degrees});
-                this.mrMeeseeksArray.push({rotateDegree: degrees});
-            });
+            .pipe(
+                map(this.createMrMeeseeks)
+            )
+            .subscribe(newMrMeeseeks => this.mrMeeseeks.push(newMrMeeseeks));
     }
 
     releaseMrMeeseeks() {
-        this.router.navigate(['..', 'overview'], {relativeTo: this.activatedRoute});
+        this.router.navigate(['..', 'overview'], {
+            relativeTo: this.activatedRoute
+        });
+    }
+
+    private createMrMeeseeks() {
+        const randomNr = highest => Math.floor(Math.random() * Math.floor(highest));
+
+        return {
+            rotation: randomNr(360),
+            x: randomNr(200),
+            y: randomNr(500),
+        };
     }
 }

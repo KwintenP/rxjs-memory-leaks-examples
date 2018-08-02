@@ -17,19 +17,33 @@ import { SubjectMemoryLeakOrNotComponent } from './containers/subject-memory-lea
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSharedModule } from '../mat-shared/mat-shared.module';
 import { FindRxBugsComponent } from './containers/find-rx-bugs/find-rx-bugs.component';
+import { HelpMeMrMeeseeksComponent } from './containers/mr-meeseeks/help-me-mr-meeseeks.component';
+import { OverviewComponent } from './containers/overview/overview.component';
+import { MrMeeseeksComponent } from './components/mr-meeseeks/mr-meeseeks.component';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        RouterModule.forChild(exampleRoutes),
-        HttpClientModule,
-        StoreModule.forRoot({ count: counterReducer }),
-        MatSharedModule,
-        FormsModule,
-        ReactiveFormsModule
-    ],
-    declarations: [ObservableCreateComponent, CustomOperatorComponent, ServicesAndSubjectsComponent, StoreSubscribeComponent, UnboundShareReplayComponent, NoMemLeaksComponent, SubjectMemoryLeakOrNotComponent, FindRxBugsComponent],
-    providers: [PokemonService, BitcoinService]
+  imports: [
+    CommonModule,
+    RouterModule.forChild(exampleRoutes),
+    HttpClientModule,
+    StoreModule.forRoot({ count: counterReducer }),
+    MatSharedModule,
+    FormsModule,
+    ReactiveFormsModule
+  ],
+  declarations: [
+    ObservableCreateComponent,
+    CustomOperatorComponent,
+    ServicesAndSubjectsComponent,
+    StoreSubscribeComponent,
+    UnboundShareReplayComponent,
+    NoMemLeaksComponent,
+    SubjectMemoryLeakOrNotComponent,
+    FindRxBugsComponent,
+    HelpMeMrMeeseeksComponent,
+    OverviewComponent,
+    MrMeeseeksComponent
+  ],
+  providers: [PokemonService, BitcoinService]
 })
-export class ExamplesModule {
-}
+export class ExamplesModule {}

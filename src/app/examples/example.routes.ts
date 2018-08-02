@@ -7,14 +7,21 @@ import { UnboundShareReplayComponent } from './containers/unbound-share-replay/u
 import { NoMemLeaksComponent } from './containers/no-mem-leaks/no-mem-leaks.component';
 import { SubjectMemoryLeakOrNotComponent } from './containers/subject-memory-leak-or-not/subject-memory-leak-or-not.component';
 import { FindRxBugsComponent } from './containers/find-rx-bugs/find-rx-bugs.component';
+import { HelpMeMrMeeseeksComponent } from './containers/mr-meeseeks/help-me-mr-meeseeks.component';
+import { OverviewComponent } from './containers/overview/overview.component';
 
 export const exampleRoutes: Routes = [
-    {path: 'create', component: ObservableCreateComponent},
-    {path: 'custom-operator', component: CustomOperatorComponent},
-    {path: 'services-and-subjects', component: ServicesAndSubjectsComponent},
-    {path: 'store-subscribe', component: StoreSubscribeComponent},
-    {path: 'unbounded-share-replay', component: UnboundShareReplayComponent},
-    {path: 'no-mem-leaks', component: NoMemLeaksComponent},
-    {path: 'subject-mem-leak-or-not', component: SubjectMemoryLeakOrNotComponent},
-    {path: 'find-rx-bugs', component: FindRxBugsComponent},
+  { path: 'overview', component: OverviewComponent },
+  { path: 'mr-meeseeks', component: HelpMeMrMeeseeksComponent },
+  { path: 'create', component: ObservableCreateComponent },
+  { path: 'custom-operator', component: CustomOperatorComponent },
+  { path: 'services-and-subjects', component: ServicesAndSubjectsComponent },
+  { path: 'store-subscribe', component: StoreSubscribeComponent },
+  { path: 'unbounded-share-replay', component: UnboundShareReplayComponent },
+  { path: 'no-mem-leaks', component: NoMemLeaksComponent },
+  {
+    path: 'subject-mem-leak-or-not',
+    component: SubjectMemoryLeakOrNotComponent
+  },
+  { path: 'find-rx-bugs', component: FindRxBugsComponent }
 ];

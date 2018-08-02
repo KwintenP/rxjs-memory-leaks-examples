@@ -5,15 +5,14 @@ import { BitcoinService } from '../../services/bitcoin.service';
   selector: 'app-unbound-share-replay',
   template: `
       {{bitcoin$ | async}}
-  `,
+  `
 })
 export class UnboundShareReplayComponent implements OnInit {
   bitcoin$;
 
-  constructor(private bitcoinService: BitcoinService) { }
+  constructor(private bitcoinService: BitcoinService) {}
 
   ngOnInit() {
     this.bitcoin$ = this.bitcoinService.getBitcoinPrice();
   }
-
 }

@@ -1,0 +1,5 @@
+windows:
+- name: sample-two-panes
+  root: ~/dev/github/kwintenp/rxjs-memory-leaks-examples
+  panes:
+  - yarn start

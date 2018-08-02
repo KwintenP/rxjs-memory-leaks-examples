@@ -3,6 +3,6 @@ import { PokemonOverviewComponent } from './components/pokemon-overview/pokemon-
 import { PokemonDetailComponent } from './components/pokemon-detail/pokemon-detail.component';
 
 export const pokemonRoutes: Routes = [
-    {path: '', component: PokemonOverviewComponent},
-    {path: ':id', component: PokemonDetailComponent},
+  { path: '', component: PokemonOverviewComponent },
+  { path: ':id', component: PokemonDetailComponent }
 ];

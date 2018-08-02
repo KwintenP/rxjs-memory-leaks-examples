@@ -8,9 +8,8 @@ describe('SubjectMemoryLeakOrNotComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SubjectMemoryLeakOrNotComponent ]
-    })
-    .compileComponents();
+      declarations: [SubjectMemoryLeakOrNotComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
