@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { interval } from 'rxjs';
+import { interval, timer } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MrMeeseeks } from '../../models/mr-meeseeks.entity';
@@ -27,12 +27,13 @@ export class HelpMeMrMeeseeksComponent {
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
 
   askMrMeeseeksForHelp() {
-    interval(1000)
+    timer(0, 1000)
       .pipe(map(this.createMrMeeseeks))
       .subscribe(newMrMeeseeks => this.mrMeeseeks.push(newMrMeeseeks));
   }
 
   releaseMrMeeseeks() {
+    this.mrMeeseeks = undefined;
     this.router.navigate(['..', 'overview'], {
       relativeTo: this.activatedRoute
     });

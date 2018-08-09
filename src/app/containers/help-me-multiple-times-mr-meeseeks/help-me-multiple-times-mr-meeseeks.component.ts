@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
-import { interval } from 'rxjs/index';
+import { interval, Subscription } from 'rxjs/index';
 import { MrMeeseeks } from '../../models/mr-meeseeks.entity';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-help-me-multiple-times-mr-meeseeks',
@@ -13,7 +14,7 @@ import { MrMeeseeks } from '../../models/mr-meeseeks.entity';
               <img src="assets/img/mr_meeseeks_button.png" alt="mr meeseeks button">
           </button>
           <button mat-button
-                  (click)="releaseMrMeeseeks()">
+                  (click)="askMrMeeseeksForHelpAgain()">
               <mat-icon>rotate_left</mat-icon>
           </button>
           <button mat-button
@@ -25,15 +26,27 @@ import { MrMeeseeks } from '../../models/mr-meeseeks.entity';
   `,
   styleUrls: ['./help-me-multiple-times-mr-meeseeks.component.scss']
 })
-export class HelpMeMultipleTimesMrMeeseeksComponent {
+export class HelpMeMultipleTimesMrMeeseeksComponent implements OnDestroy {
     mrMeeseeks: Array<MrMeeseeks> = [];
+    private subscription: Subscription;
 
     constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
 
     askMrMeeseeksForHelp() {
-        interval(1000)
+        this.subscription = timer(0, 1000)
             .pipe(map(this.createMrMeeseeks))
             .subscribe(newMrMeeseeks => this.mrMeeseeks.push(newMrMeeseeks));
+    }
+
+    askMrMeeseeksForHelpAgain() {
+        this.mrMeeseeks = [];
+        this.subscription = timer(0, 1000)
+            .pipe(map(this.createMrMeeseeks))
+            .subscribe(newMrMeeseeks => this.mrMeeseeks.push(newMrMeeseeks));
+    }
+
+    ngOnDestroy(): void {
+        this.subscription.unsubscribe();
     }
 
     releaseMrMeeseeks() {
@@ -41,6 +54,7 @@ export class HelpMeMultipleTimesMrMeeseeksComponent {
             relativeTo: this.activatedRoute
         });
     }
+
 
     private createMrMeeseeks() {
         const randomNr = highest => Math.floor(Math.random() * Math.floor(highest));
